@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='style.js') }}"></script>
+
+
+    
+    <title>Ludiflex | </title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>FEMNERGY LOGISTICS</p>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="{{ url_for('home') }}" class="link active">Home</a></li>
+                <li><a href="{{ url_for('home') }}" class="link">Blog</a></li>
+                <li><a href="#" class="link">Services</a></li>
+                <li><a href="#" class="link">About</a></li>
+                <li><a href="#" class="link">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="nav-button">
+            {% if current_user.is_authenticated %}
+            <button class="btn white-btn" onclick="#">New POST</button>
+            <button class="btn"  onclick="#">Account</button>
+            <button class="btn"  onclick="#">Logout</button>
+
+            {% else %}
+            <button class="btn white-btn" id="loginBtn" onclick="login()">Sign In</button>
+            <button class="btn" id="registerBtn" onclick="register()">Sign Up</button>
+            {% endif %}
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+<!----------------------------- Form box ----------------------------------->    
+   
+</div>  
+<main role="main" class="container">
+    <div class="row">
+      <div class="col-md-8">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </div>
+      <div class="col-md-4">
+        <div class="content-section">
+          <h3>Our Sidebar</h3>
+          <p class='text-muted'>You can put any information here you'd like.
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-light">Latest Posts</li>
+              <li class="list-group-item list-group-item-light">Announcements</li>
+              <li class="list-group-item list-group-item-light">Calendars</li>
+              <li class="list-group-item list-group-item-light">etc</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main> 
+</body>
+</html>
