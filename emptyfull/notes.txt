@@ -1,0 +1,40 @@
+@app.route('/admin', methods=['GET', 'POST'])
+def admin_dashboard():
+
+    if current_user.level != 1:
+        flash("Access Denied! Only Level 1 users can register new users.", "danger")
+        return redirect(url_for('dashboard'))
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        level = int(request.form['level'])
+
+        if level <= current_user.level or level > 10:
+            flash("Invalid level selection!", "danger")
+            return redirect(url_for('admin_dashboard'))
+
+        new_user = User(username=username, password=generate_password_hash(password), level=level)
+        db.session.add(new_user)
+        db.session.commit()
+
+        flash(f"User {username} created successfully!", "success")
+
+
+    return render_template('admin.html', user=current_user)
+
+
+
+
+    u=User.query.all()
+    for i in u:
+        print(i.username)
+
+
+@@@
+
+
+
+{{ url_for('menu.' +subitem.replace(' ', '_').lower()) }}
+
+{{ url_for('menu.' +item.replace(' ', '_').lower()) }}

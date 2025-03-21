@@ -1,0 +1,35 @@
+{% extends "dashboard.html" %}
+{% block content %}
+
+
+        <!-- Register New User (Only if user has permission) -->
+        {% if user.level < 10 %}
+        <div class="card mt-4">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h5 mb-0">Register New User</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" autocomplete="off" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">User Level (must be greater than your level)</label>
+                        <input type="number" name="level" class="form-control" min="2" max="10" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Register User</button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+            <div class="alert alert-warning mt-4">You do not have permission to register new users.</div>
+        {% endif %}
+
+
+{% endblock content %}

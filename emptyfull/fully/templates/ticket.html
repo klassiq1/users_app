@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticketing Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Ticketing System</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">New Ticket</a></li>
+            <li><a href="#">My Tickets</a></li>
+            <li><a href="#">Closed Tickets</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+        <a href="#" class="logout-btn">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Dashboard</h1>
+
+        <!-- Ticket Summary -->
+        <div class="ticket-summary">
+            <div class="card total">
+                <h3>Total Tickets</h3>
+                <p id="total-tickets">0</p>
+            </div>
+            <div class="card open">
+                <h3>Open Tickets</h3>
+                <p id="open-tickets">0</p>
+            </div>
+            <div class="card in-progress">
+                <h3>In Progress</h3>
+                <p id="in-progress-tickets">0</p>
+            </div>
+            <div class="card closed">
+                <h3>Closed Tickets</h3>
+                <p id="closed-tickets">0</p>
+            </div>
+        </div>
+
+        <!-- Ticket Table -->
+        <h2>Recent Tickets</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th>Created</th>
+                </tr>
+            </thead>
+            <tbody id="ticket-table">
+                <!-- Dynamic tickets will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

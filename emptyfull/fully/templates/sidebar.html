@@ -1,0 +1,22 @@
+<!-- sidebar.html -->
+<div class="sidebar">
+    <h2>Menu</h2>
+    <ul>
+        {% for item, subitems in menu_items.items() %}
+        <li>
+            {% if subitems %}
+                <button class="dropdown-btn">{{ item }}</button>
+                <ul class="dropdown-container">
+                    {% for subitem in subitems %}
+                        <li><a href="">{{ subitem }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <a href="">{{ item }}</a>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<script src="{{ url_for('static', filename='sidebar.js') }}"></script>
+
